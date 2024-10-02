@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
+//Dto som används för att sätta användaren i session eftersom vi använder oss av Http session istället för Spring security.
 public class UserDTO implements Serializable {
 
     @Serial

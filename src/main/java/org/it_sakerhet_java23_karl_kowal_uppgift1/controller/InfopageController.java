@@ -17,6 +17,7 @@ public class InfopageController {
     private UserService userService;
 
     @GetMapping("/info")
+    //Hämtar användaren som är i session och bygger sidan efter den.
     public String showUserInfo(HttpSession session, Model model) {
         UserDTO loggedInUser = (UserDTO) session.getAttribute("user");
         if (loggedInUser == null) {
@@ -28,6 +29,10 @@ public class InfopageController {
     }
 
     @PostMapping("/update-info")
+    /*Ungefär samma som ovan hämtar användaren som är i session.
+    Hämtar sedan användaren från databasen och skriver över namn och adress.
+    Skriver över den gamla användarens session med den nya infon.
+    */
     public String updateUserInfo(UserEntity updatedUser, HttpSession session, Model model) {
         UserDTO loggedInUser = (UserDTO) session.getAttribute("user");
         if (loggedInUser == null) {
@@ -47,6 +52,7 @@ public class InfopageController {
     }
 
     @PostMapping("/delete-user")
+    //Hämtar userns som är i session och tar bort den.
     public String deleteUser(HttpSession session) {
         UserDTO loggedInUser = (UserDTO) session.getAttribute("user");
         if (loggedInUser == null) {

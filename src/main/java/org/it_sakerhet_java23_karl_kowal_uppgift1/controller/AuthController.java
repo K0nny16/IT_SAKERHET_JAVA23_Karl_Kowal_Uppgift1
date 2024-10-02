@@ -19,6 +19,7 @@ public class AuthController {
     public String homePage() {
         return "login";
     }
+    //Mapping för posten som sker efter att formet har fyllts i.
     @PostMapping("/register")
     public String register(Model model, UserEntity user) {
         try {
@@ -31,11 +32,13 @@ public class AuthController {
         }
     }
     @GetMapping("/register")
+    //Skickar med en tom User till sidan med registeringens formet så att det stämmer övernes i HTML.
     public String registerForm(Model model) {
         model.addAttribute("user", new UserEntity());
         return "register";
     }
     @PostMapping("/login")
+    //Loggar in användaren och sätter han i session.
     public String loginUser(String email, String password, Model model, HttpSession session) {
         boolean auth = userServices.loginUser(email, password, session);
         if (auth) {
@@ -45,6 +48,7 @@ public class AuthController {
             return "login";
         }
     }
+    //Tarbort sessionen och skickar användaren till roten.
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
